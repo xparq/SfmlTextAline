@@ -41,6 +41,7 @@
 //#include <iostream>
 #include <algorithm>
 #include <functional>
+#include <cmath>
 
 #define SET_AND_UPDATE_MEMBER_IF_DIFFERENT_PTR(x) do { if ((m_##x) != &##x) { ((m_##x) = &##x); m_isUpdateRequired = true; } } while(0)
 #define SET_AND_UPDATE_MEMBER_IF_DIFFERENT(x) do { if ((m_##x) != x) { ((m_##x) = x); m_isUpdateRequired = true; } } while(0)
@@ -584,7 +585,7 @@ void SfmlTextAline::updateVertices() const
 				offset.x += maxLineWidth - m_lines[l].width;
 				break;
 			case Alignment::Center:
-				offset.x += (maxLineWidth - m_lines[l].width) / 2.f;
+				offset.x += roundf((maxLineWidth - m_lines[l].width) / 2.f);
 				break;
 			case Alignment::Left:
 			case Alignment::JustifyCharacters:
